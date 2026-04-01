@@ -2,11 +2,11 @@
 
 ## 🎯 MASTER COMPARISON TABLE: All Versions by Loss Function
 
-| **Dimension** | **CFSum (Paper)** | **MSE Only** (v0 First) | **MSE + Ranking** (v1 Clean) | **MSE + Ranking + Contrastive** (v2 Clean / v2 Improved ⭐) | **Ranking Only** (v4 Overfit Fix) |
+| **Dimension** | **Baseline(test set)** | **MSE Only**  | **MSE + Ranking**  | **MSE + Ranking + Contrastive**  | **Ranking Only**  |
 |---|---|---|---|---|---|
 | **PERFORMANCE METRICS** |
-| mAP | 41.18% | 60.02% | **60.64%** (test) | **62.77%** | **60.64%** (test) |
-| HIT@1 | **66.37%** | 21.30% | **59.97%** (test) | 24.50% | **59.97%** (test) |
+| mAP | 41.18% | 60.02% | **60.64%** (validation) | **62.77%** | **60.64%** (validation) |
+| HIT@1 | **66.37%** | 21.30% | **59.97%** (validation) | 24.50% | **59.97%** (validation) |
 | Val Loss | N/A | 0.4121 | 0.9770 | **0.9431** ✓ | **0.6380** ✓ |
 | Convergence (Epochs) | ~50 | 70 | 9 | 27 | 10 |
 | Δ mAP vs CFSum | - | +18.84% | +19.46% | **+21.59%** | +19.46% |
@@ -84,7 +84,7 @@
 
 | Methodology | mAP | HIT@1 | Δ mAP | Δ HIT@1 | Key Difference | Reason |
 |-------------|-----|-------|-------|---------|---|---|
-| **CFSum (Paper)** | 41.18% | 66.37% | - | - | Original approach | Baseline from Zhang et al. paper |
+| **baseline(test)** | 41.18% | 66.37% | - | - | Original approach | Baseline from Zhang et al. paper |
 | **v0 First** | 60.02% | 21.30% | **+18.84%** ⬆️ | **-45.07%** ⬇️ | MSE loss + audio-visual fusion | Better mAP but poor ranking (no margin loss) |
 | **v1 Clean** | 60.64% | 60.57% | **+19.46%** ⬆️ | **-5.80%** ⬇️ | Added ranking loss + CLIP visual | Ranking loss improves HIT@1; still below CFSum |
 | **v2 Clean** | 62.05% | 25.57% | **+20.87%** ⬆️ | **-40.80%** ⬇️ | Architecture fixes + balanced loss | Best stability/performance tradeoff |
