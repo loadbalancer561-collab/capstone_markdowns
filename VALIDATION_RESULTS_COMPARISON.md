@@ -1,82 +1,82 @@
 # 📊 Complete Validation Results Comparison
 
-## � MASTER COMPARISON TABLE: All Versions Across All Dimensions
+## 🎯 MASTER COMPARISON TABLE: All Versions by Loss Function
 
-| **Dimension** | **CFSum (Paper)** | **v0 First** | **v1 Clean** | **v2 Clean** | **v2 Bad** | **v2 Improved** ⭐ | **v4 Overfit Fix** |
-|---|---|---|---|---|---|---|---|
+| **Dimension** | **CFSum (Paper)** | **MSE Only** (v0 First) | **MSE + Ranking** (v1 Clean) | **MSE + Ranking + Contrastive** (v2 Clean / v2 Improved ⭐) | **Ranking Only** (v4 Overfit Fix) |
+|---|---|---|---|---|---|
 | **PERFORMANCE METRICS** |
-| mAP | 41.18% | 60.02% | 60.64% (test) | **62.05%** | 60.56% | **62.77%** | 60.64% (test) |
-| HIT@1 | **66.37%** | 21.30% | **60.57%** (test) | 25.57% | 25.03% | 24.50% | **59.97%** (test) |
-| Val Loss | N/A | 0.4121 | 0.9770 | 0.9752 | 0.9799 | **0.9431** ✓ | **0.6380** ✓ |
-| Convergence (Epochs) | ~50 | 70 | 9 | **12** ✓ | 9 | 27 | 10 |
-| Δ mAP vs CFSum | - | +18.84% | +19.46% | +20.87% | +19.38% | **+21.59%** | +19.46% |
-| Δ HIT@1 vs CFSum | - | -45.07% | -5.80% | -40.80% | -41.34% | -41.87% | **-6.40%** |
+| mAP | 41.18% | 60.02% | **60.64%** (test) | **62.77%** | **60.64%** (test) |
+| HIT@1 | **66.37%** | 21.30% | **59.97%** (test) | 24.50% | **59.97%** (test) |
+| Val Loss | N/A | 0.4121 | 0.9770 | **0.9431** ✓ | **0.6380** ✓ |
+| Convergence (Epochs) | ~50 | 70 | 9 | 27 | 10 |
+| Δ mAP vs CFSum | - | +18.84% | +19.46% | **+21.59%** | +19.46% |
+| Δ HIT@1 vs CFSum | - | -45.07% | -6.40% | -41.87% | -6.40% |
 | **VISUAL ENCODER** |
-| Architecture | ResNet-152 | SlowFast | SlowFast | SlowFast | SlowFast | SlowFast | SlowFast |
-| Pre-training | ImageNet | Kinetics-400 | Kinetics-400 | Kinetics-400 | Kinetics-400 | Kinetics-400 | Kinetics-400 |
-| Feature Dim | 2048 | 2304 | 2304 | 2304 | 2304 | 2304 | 2304 |
-| Temporal Modeling | Max-pool | 3D Conv | 3D Conv | 3D Conv | 3D Conv | 3D Conv | 3D Conv |
+| Architecture | ResNet-152 | SlowFast | SlowFast | SlowFast | SlowFast |
+| Pre-training | ImageNet | Kinetics-400 | Kinetics-400 | Kinetics-400 | Kinetics-400 |
+| Feature Dim | 2048 | 2304 | 2304 | 2304 | 2304 |
+| Temporal Modeling | Max-pool | 3D Conv | 3D Conv | 3D Conv | 3D Conv |
 | **AUDIO ENCODER** |
-| Architecture | VGGish | PANN CNN14 | PANN CNN14 | PANN CNN14 | PANN CNN14 | PANN CNN14 | PANN CNN14 |
-| Pre-training | Speech/Music | Music-spec. | Music-spec. | Music-spec. | Music-spec. | Music-spec. | Music-spec. |
-| Feature Dim | 128 | 2048 | 2048 | 2048 | 2048 | 2048 | 2048 |
-| Missing Audio | ✓ Handled | ✗ Issues | ✓ Fixed | ✓ Fixed | ✓ Fixed | ✓ Fixed | ✓ Fixed |
+| Architecture | VGGish | PANN CNN14 | PANN CNN14 | PANN CNN14 | PANN CNN14 |
+| Pre-training | Speech/Music | Music-spec. | Music-spec. | Music-spec. | Music-spec. |
+| Feature Dim | 128 | 2048 | 2048 | 2048 | 2048 |
+| Missing Audio | ✓ Handled | ✗ Issues | ✓ Fixed | ✓ Fixed | ✓ Fixed |
 | **TEXT ENCODER** |
-| Architecture | GloVe | - | CLIP | CLIP | CLIP | CLIP | CLIP |
-| Feature Dim | 300d | - | 512d | 512d | 512d | 512d | 512d |
-| Pre-training | Wikipedia | - | 400M pairs | 400M pairs | 400M pairs | 400M pairs | 400M pairs |
-| Semantic Grounding | ✗ Limited | - | ✓ Visual | ✓ Visual | ✓ Visual | ✓ Visual | ✓ Visual |
+| Architecture | GloVe | - | CLIP | CLIP | CLIP |
+| Feature Dim | 300d | - | 512d | 512d | 512d |
+| Pre-training | Wikipedia | - | 400M pairs | 400M pairs | 400M pairs |
+| Semantic Grounding | ✗ Limited | - | ✓ Visual | ✓ Visual | ✓ Visual |
 | **FUSION MECHANISM** |
-| Arch Type | Simple Attention | Multi-head Attn | Multi-head Attn | Multi-head Attn | Multi-head Attn | Multi-head Attn | Transformer |
-| Heads | 4 | 4 | 4 | 4 | 4 | 4 | 4 |
-| Fusion Layers | 1 | 2 | 2 | 2 | 2 | 2 | **1** (focused) |
-| Positional Encoding | Per-modality | Per-modality | Per-modality | Per-modality | Per-modality | Per-modality | Per-modality |
-| Cross-attention Depth | Single | Deep | Deep | Deep | Deep | Deep | Single |
+| Arch Type | Simple Attention | Multi-head Attn | Multi-head Attn | Multi-head Attn | Transformer |
+| Heads | 4 | 4 | 4 | 4 | 4 |
+| Fusion Layers | 1 | 2 | 2 | 2 | **1** (focused) |
+| Positional Encoding | Per-modality | Per-modality | Per-modality | Per-modality | Per-modality |
+| Cross-attention Depth | Single | Deep | Deep | Deep | Single |
 | **LOSS FUNCTION** |
-| MSE Weight | N/A | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | **0.0** |
-| Ranking Loss | ✓ Margin | ✗ None | ✓ Margin | ✓ Margin | ✓ Margin | ✓ Margin | ✓ Margin |
-| Margin Value | 0.3 | - | 0.2 | 0.2 | 0.2 | 0.2 | 0.2 |
-| Contrastive Loss | ✗ No | ✗ No | ✗ No | ✓ Yes | ✓ Yes | ✓ Yes | ✗ No |
-| Contrastive Weight | - | - | - | 0.1 | 0.1 | 0.1 | - |
-| Total Loss Terms | 1 | 1 | 2 | 3 | 3 | 3 | 2 |
-| Loss Type Profile | HIT@1-opt | MSE-opt | Mixed | Balanced | Balanced | Balanced | Ranking-opt |
+| MSE Weight | N/A | 1.0 | 1.0 | 1.0 | **0.0** |
+| Ranking Loss | ✓ Margin | ✗ None | ✓ Margin | ✓ Margin | ✓ Margin |
+| Margin Value | 0.3 | - | 0.2 | 0.2 | 0.2 |
+| Contrastive Loss | ✗ No | ✗ No | ✗ No | ✓ Yes | ✗ No |
+| Contrastive Weight | - | - | - | 0.1 | - |
+| Total Loss Terms | 1 | 1 | 2 | 3 | 2 |
+| Loss Type Profile | HIT@1-opt | MSE-opt | Balanced | Balanced | Ranking-opt |
 | **TRAINING CONFIG** |
-| Batch Size | ~32 | 32 | 32 | 32 | 32 | 8 + grad accum | 8 + grad accum |
-| Effective Batch | 32 | 32 | 32 | 32 | 32 | **16** | **16** |
-| Optimizer | Adam | Adam | Adam | Adam | Adam | AdamW | AdamW |
-| Base LR | 5e-5 | 5e-5 | 5e-5 | 5e-5 | 5e-5 | 1e-4 | 1e-4 |
-| LR Schedule | Fixed | Fixed | Fixed | Fixed | Fixed | **Warmup+Cosine** ✓ | **Warmup+Cosine** ✓ |
-| Warmup Steps | N/A | - | - | - | - | **2,255 (5%)** | - |
-| Epochs | ~50 | 70 | 50 | 50 | 50 | **100** | 50 |
-| Dropout Rate | 0.1 | 0.2 | 0.2 | 0.2 | 0.2 | 0.3 | **0.4** (focused) |
-| DropPath | ✗ No | ✗ No | ✗ No | ✗ No | ✗ No | ✗ No | **0.1** ✓ |
-| Weight Decay | 5e-5 | 5e-5 | 5e-5 | 5e-5 | 5e-5 | 5e-4 | **2e-3** (aggr.) |
+| Batch Size | ~32 | 32 | 32 | 8 + grad accum | 8 + grad accum |
+| Effective Batch | 32 | 32 | 32 | **16** | **16** |
+| Optimizer | Adam | Adam | Adam | AdamW | AdamW |
+| Base LR | 5e-5 | 5e-5 | 5e-5 | 1e-4 | 1e-4 |
+| LR Schedule | Fixed | Fixed | Fixed | **Warmup+Cosine** ✓ | **Warmup+Cosine** ✓ |
+| Warmup Steps | N/A | - | - | **2,255 (5%)** | - |
+| Epochs | ~50 | 70 | 50 | **100** | 50 |
+| Dropout Rate | 0.1 | 0.2 | 0.2 | 0.3 | **0.4** (focused) |
+| DropPath | ✗ No | ✗ No | ✗ No | ✗ No | **0.1** ✓ |
+| Weight Decay | 5e-5 | 5e-5 | 5e-5 | 5e-4 | **2e-3** (aggr.) |
 | **REGULARIZATION** |
-| Effort Level | Low | Low | Low | Low | Low | **Medium** | **High** |
-| Audio Masking | ✗ Multiply | ✗ Multiply | ✓ Attention mask | ✓ Attention mask | ✓ Attention mask | ✓ Attention mask | ✓ Attention mask |
-| PE Redundancy | ✗ Double | ✗ Double | ✓ Fixed | ✓ Fixed | ✓ Fixed | ✓ Fixed | ✓ Fixed |
-| Checkpoint Management | Basic | Basic | Basic | Basic | Basic | **Full (LR+epoch)** ✓ | **Full** ✓ |
-| Data Loading | Disk I/O | Disk I/O | Disk I/O | Disk I/O | Disk I/O | **RAM pre-load** ✓ | **RAM pre-load** ✓ |
-| Workers | 0 | 0 | 0 | 0 | 0 | **2** ✓ | **2** ✓ |
+| Effort Level | Low | Low | Low | **Medium** | **High** |
+| Audio Masking | ✗ Multiply | ✗ Multiply | ✓ Attention mask | ✓ Attention mask | ✓ Attention mask |
+| PE Redundancy | ✗ Double | ✗ Double | ✓ Fixed | ✓ Fixed | ✓ Fixed |
+| Checkpoint Management | Basic | Basic | Basic | **Full (LR+epoch)** ✓ | **Full** ✓ |
+| Data Loading | Disk I/O | Disk I/O | Disk I/O | **RAM pre-load** ✓ | **RAM pre-load** ✓ |
+| Workers | 0 | 0 | 0 | **2** ✓ | **2** ✓ |
 | **EVALUATION PROTOCOL** |
-| Metric Type | Top-1 focus | Full mAP | Full mAP | Full mAP | Full mAP | Full mAP | Full mAP |
-| Overlap Type | Partial (Top-5) | Full overlap | Full overlap | Full overlap | Full overlap | Full overlap | Full overlap |
-| Evaluation Sets | Single | Single | Val + Test | Single | Single | Single | Val + Test |
+| Metric Type | Top-1 focus | Full mAP | Full mAP | Full mAP | Full mAP |
+| Overlap Type | Partial (Top-5) | Full overlap | Full overlap | Full overlap | Full overlap |
+| Evaluation Sets | Single | Single | Val + Test | Single | Val + Test |
 | **PRODUCTION READINESS** |
-| Status | ✓ Published | ✗ Baseline | ✓ Major fixes | ✓ Production | ⚠ Regressed | ✓ Best | ✓ Research |
-| Recommendation | Baseline | Internal ref | Milestone | ✓ Deploy | Skip | ⭐ Use v2 Improved | Ablations |
-| Key Strength | HIT@1 | Comprehensive | Milestones | Stability | - | mAP optimized | Ranking opt |
-| Key Weakness | Older arch | Poor HIT@1 | Still untuned | Not best mAP | Regression | Low HIT@1 | Moderate mAP |
+| Status | ✓ Published | ✗ Baseline | ✓ Major fixes | ⭐ **Use This** | ✓ Research |
+| Recommendation | Baseline | Internal ref | Production | **BEST mAP** | Ranking ablations |
+| Key Strength | HIT@1 | Comprehensive | Ranking opt | mAP optimized | Ranking opt |
+| Key Weakness | Older arch | Poor HIT@1 | No contrastive | Low HIT@1 | Moderate mAP |
 
 ### 🎯 Quick Decision Guide (from Master Table):
 
 **Choose by Priority**:
-- **Max mAP** → v2 Improved (62.77%) - 12 fixes, optimal training
-- **Max HIT@1** → v4 Overfit Fix (59.97%) - aggressive regularization
-- **Production Stability** → v2 Clean (62.05% mAP, 25.57% HIT@1) - converges epoch 12
-- **Balance HIT@1+mAP** → v1 Clean (60.64% mAP, 60.57% HIT@1) - ranking-focused
-- **Fastest Convergence** → v1 or v4 (9-10 epochs) - early stopping safety
-- **Best Generalization** → v4 (val loss 0.6380) - aggressive regularization synergy
+- **Max mAP** → MSE + Ranking + Contrastive (v2 Improved: 62.77%) - balanced loss, optimal training
+- **Max HIT@1** → Ranking Only (v4 Overfit Fix: 59.97%) - aggressive regularization
+- **Production Stability** → MSE + Ranking + Contrastive (v2 Clean: 62.05% mAP, 25.57% HIT@1) - converges epoch 12
+- **Balance HIT@1+mAP** → MSE + Ranking (v1 Clean: 60.64% mAP, 60.57% HIT@1) - dedicated ranking focus
+- **Fastest Convergence** → MSE + Ranking or Ranking Only (9-10 epochs) - early stopping safety
+- **Best Generalization** → Ranking Only (v4: val loss 0.6380) - aggressive regularization synergy
 
 ---
 
@@ -90,6 +90,14 @@
 | **v2 Clean** | 62.05% | 25.57% | **+20.87%** ⬆️ | **-40.80%** ⬇️ | Architecture fixes + balanced loss | Best stability/performance tradeoff |
 | **v2 Improved** | **62.77%** | 24.50% | **+21.59%** ⬆️ | **-41.87%** ⬇️ | All 12 fixes + optimized training | **State-of-art mAP** (highest on this task) |
 | **v4 Overfit Fix** | 60.64% | **59.97%** | **+19.46%** ⬆️ | **-6.40%** ⬇️ | Aggressive regularization + ranking | Best ranking quality; moderate mAP |
+
+| Loss Function | mAP | HIT@1 | Δ mAP | Δ HIT@1 | Optimization Strategy | Reason |
+|---|---|---|---|---|---|---|
+| **CFSum (Paper)** | 41.18% | 66.37% | - | - | HIT@1-optimized ranking | Baseline from Zhang et al. paper |
+| **MSE Only** (v0 First) | 60.02% | 21.30% | **+18.84%** ⬆️ | **-45.07%** ⬇️ | MSE saliency regression | Better mAP but poor ranking (no margin loss) |
+| **MSE + Ranking** (v1 Clean) | 60.64% | 60.57% | **+19.46%** ⬆️ | **-6.40%** ⬇️ | Ranking loss added | Ranking loss improves HIT@1 significantly |
+| **MSE + Ranking + Contrastive** (v2 Improved) | **62.77%** | 24.50% | **+21.59%** ⬆️ | **-41.87%** ⬇️ | Balanced multi-objective | **State-of-art mAP** (most accurate ranking) |
+| **Ranking Only** (v4 Overfit Fix) | 60.64% | **59.97%** | **+19.46%** ⬆️ | **-6.40%** ⬇️ | Aggressive regularization + ranking | Best ranking quality; moderate mAP |
 
 ### 📊 Summary Insights:
 
@@ -108,14 +116,14 @@
 
 ## Executive Summary: Performance Progression
 
-| Version | Notebook | mAP (Overall) | HIT@1 | Val Loss | Status | Notes |
-|---------|----------|---------------|-------|----------|--------|-------|
-| **v0 first** | audio_cfsum_training_23_march (1).ipynb | **0.6002** | 0.2130 | 0.4121 | ✓ Baseline | Early training, position bias present |
-| **v1 Clean** | cfsum_v1_25_march.ipynb | **0.5385** (val) / **0.6064** (test) | 0.5121 (val) / 0.6057 (test) | 0.9770 | ✓ Bug fixed | Major improvements over v0 |
-| **v2 Clean** | audio_cfsum_v2_24_march_clean.ipynb | **0.6205** | 0.2557 | 0.9752 | ✓ Prod Ready | Best production stability |
-| **v2 Clean (Bad)** | audio_cfsum_v2_24_march_clean_new_bad.ipynb | 0.6056 | 0.2503 | 0.9799 | ⚠ Regressed | Worse results than v2 clean |
-| **v2 Improved** | audio_cfsum_training_improved_20mc2026__2_better.ipynb | **0.6277** | **0.2450** | 0.9431 | ✓ Best | **10 major fixes applied** |
-| **v4 Overfit Fix** | cfsum_v4_overfit_fix.ipynb | **0.5394** (val) / **0.6064** (test) | 0.5168 (val) / 0.5997 (test) | 0.6380 | ✓ Research | Research variant with ablations |
+| Version | Loss Function | Notebook | mAP (Overall) | HIT@1 | Val Loss | Status | Notes |
+|---------|---|----------|---------------|-------|----------|--------|-------|
+| **v0 first** | MSE Only | audio_cfsum_training_23_march (1).ipynb | **0.6002** | 0.2130 | 0.4121 | ✓ Baseline | Early training, position bias present |
+| **v1 Clean** | MSE + Ranking | cfsum_v1_25_march.ipynb | **0.5385** (val) / **0.6064** (test) | 0.5121 (val) / 0.6057 (test) | 0.9770 | ✓ Bug fixed | Major improvements over v0 |
+| **v2 Clean** | MSE + Ranking + Contrastive | audio_cfsum_v2_24_march_clean.ipynb | **0.6205** | 0.2557 | 0.9752 | ✓ Prod Ready | Best production stability |
+| **v2 Clean (Bad)** | MSE + Ranking + Contrastive | audio_cfsum_v2_24_march_clean_new_bad.ipynb | 0.6056 | 0.2503 | 0.9799 | ⚠ Regressed | Worse results than v2 clean |
+| **v2 Improved** | MSE + Ranking + Contrastive | audio_cfsum_training_improved_20mc2026__2_better.ipynb | **0.6277** | **0.2450** | 0.9431 | ✓ Best | **10 major fixes applied** |
+| **v4 Overfit Fix** | Ranking Only | cfsum_v4_overfit_fix.ipynb | **0.5394** (val) / **0.6064** (test) | 0.5168 (val) / 0.5997 (test) | 0.6380 | ✓ Research | Research variant with ablations |
 
 ---
 
@@ -582,29 +590,26 @@ Our Approach (v4 Overfit):
 
 ---
 
-## 📈 Performance Summary Table
+## 📈 Performance Summary Table by Loss Function
 
 ```
-┌─────────────────────┬──────────┬──────────┬────────────┬──────────────────┐
-│ Version             │ mAP      │ HIT@1    │ Val Loss   │ Improvement (v0) │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v0 Baseline         │ 0.6002   │ 0.2130   │ 0.4121     │ 0.0% (baseline)  │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v1 Clean (test)     │ 0.6064   │ 0.6057   │ 0.9770     │ +1.0% (mAP)      │
-│                     │          │          │            │ +184.4% (HIT@1)  │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v2 Clean ✓ PROD     │ 0.6205   │ 0.2557   │ 0.9752     │ +2.0% (mAP)      │
-│                     │          │          │            │ +20.0% (HIT@1)   │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v2 Clean (Bad) ✗    │ 0.6056   │ 0.2503   │ 0.9799     │ -0.8% (mAP)      │
-│                     │          │          │            │ +17.3% (HIT@1)   │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v2 Improved ⭐ BEST  │ 0.6277   │ 0.2450   │ 0.9431     │ +4.6% (mAP)      │
-│                     │          │          │            │ +15.0% (HIT@1)   │
-├─────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
-│ v4 Overfit (test)   │ 0.6064   │ 0.5997   │ 0.6380 ✓   │ +1.0% (mAP)      │
-│                     │          │          │            │ +181.4% (HIT@1)  │
-└─────────────────────┴──────────┴──────────┴────────────┴──────────────────┘
+┌──────────────────────────────────┬──────────┬──────────┬────────────┬──────────────────┐
+│ Loss Function (Version)          │ mAP      │ HIT@1    │ Val Loss   │ Improvement (v0) │
+├──────────────────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
+│ MSE Only (v0 Baseline)           │ 0.6002   │ 0.2130   │ 0.4121     │ 0.0% (baseline)  │
+├──────────────────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
+│ MSE + Ranking (v1 Clean, test)   │ 0.6064   │ 0.6057   │ 0.9770     │ +1.0% (mAP)      │
+│                                  │          │          │            │ +184.4% (HIT@1)  │
+├──────────────────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
+│ MSE + Ranking + Contr (v2 Clean) │ 0.6205   │ 0.2557   │ 0.9752     │ +2.0% (mAP)      │
+│ ✓ Production Stable              │          │          │            │ +20.0% (HIT@1)   │
+├──────────────────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
+│ MSE + Ranking + Contr ⭐ BEST     │ 0.6277   │ 0.2450   │ 0.9431     │ +4.6% (mAP)      │
+│ (v2 Improved)                    │          │          │            │ +15.0% (HIT@1)   │
+├──────────────────────────────────┼──────────┼──────────┼────────────┼──────────────────┤
+│ Ranking Only (v4 Overfit, test)  │ 0.6064   │ 0.5997   │ 0.6380 ✓   │ +1.0% (mAP)      │
+│                                  │          │          │            │ +181.4% (HIT@1)  │
+└──────────────────────────────────┴──────────┴──────────┴────────────┴──────────────────┘
 ```
 
 ---
@@ -782,12 +787,12 @@ loss = margin_ranking_loss(pred, target, margin=0.3)
   - Result: predictions 0.95, 0.30, 0.25, 0.20, 0.15 (sharp ranking)
   - mAP impact: Good if top-1 is relevant, poor if top-1 is wrong
 
-| Loss Function | Prediction Profile | mAP | HIT@1 | Use Case |
-|---|---|---|---|---|
-| MSE alone | Smooth, centered | ✓ High | ✗ Low | Magnitude estimation |
-| Ranking + Contrastive | Balanced confidence | ✓✓ Very High | ✗ Medium | Balanced retrieval |
-| Pure Ranking | Sharp distinctions | ~ Medium | ✓✓ Very High | Top-1 ranking |
-| Ensemble blend | Moderate confidence | ✓✓ High | ✓ High | Production (balanced) |
+| Loss Function Configuration | Prediction Profile | mAP | HIT@1 | Use Case | Example Version |
+|---|---|---|---|---|---|
+| **MSE Only** | Smooth, magnitude-focused | ✓ High | ✗ Low | Saliency magnitude estimation | v0 First (0.6002 / 0.2130) |
+| **MSE + Ranking** | Balanced with ranking penalty | ✓✓ Very High | ✓ Medium-High | Balanced ranking + magnitude | v1 Clean (0.6064 / 0.6057) |
+| **MSE + Ranking + Contrastive** | Conservative multi-objective | ✓✓ Very High | ✗ Low | Best mAP, complex fusion | v2 Improved (0.6277 / 0.2450) |
+| **Ranking Only** (no MSE) | Sharp distinctions, aggressive | ~ Medium | ✓✓ Very High | Top-1 ranking, confident predictions | v4 Overfit (0.6064 / 0.5997) |
 
 ---
 
