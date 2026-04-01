@@ -2,9 +2,8 @@
 
 ## 🎯 MASTER COMPARISON TABLE: All Versions by Loss Function
 
-| **Dimension** | **Baseline(test set)** | **MSE Only**  | **MSE + Ranking**  | **MSE + Ranking + Contrastive**  | **Ranking Only**  |
+| **PERFORMANCE METRICS**| **Baseline(test set)** | **MSE Only**  | **MSE + Ranking**  | **MSE + Ranking + Contrastive**  | **Ranking Only**  |
 |---|---|---|---|---|---|
-| **PERFORMANCE METRICS** |
 | mAP | 41.18% | 60.02% | **60.64%** (validation) | **62.77%** | **60.64%** (validation) |
 | HIT@1 | **66.37%** | 21.30% | **59.97%** (validation) | 24.50% | **59.97%** (validation) |
 | Val Loss | N/A | 0.4121 | 0.9770 | **0.9431** ✓ | **0.6380** ✓ |
